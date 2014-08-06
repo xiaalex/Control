@@ -36,9 +36,7 @@ Set up the data control like following. This control can update the source and f
 
 ```javascript
     $("#source").Control({
-        DataSource: data,
-        Event: 'data.changed',
-        Update: 'true'
+        DataSource: data
     });
 ```
 
@@ -47,7 +45,7 @@ If you need to watch data changed, then set up control like following.
 ```javascript
     $("#source").Control({
         DataSource: data,
-        Event: 'data.changed'
+        Update: false
     });
 }; 
 ```

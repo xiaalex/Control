@@ -17,7 +17,7 @@
     function notifyObservers(topic, source) {
         var arr = subjectCache[topic];
         $.each(arr, function () {
-            this.refreshAfterDataChanged(source);
+            this.refreshControl(source);
         });
     }
 
@@ -26,8 +26,8 @@
     var oldpluginName = $.fn[pluginName];
     var DEFAULTS = {
         DataSource: null,
-        Event: null,
-        Update: false
+        Event: 'data.changed',
+        Update: true
     };
 
     var Control = function(element, options) {
@@ -48,8 +48,8 @@
     Control.prototype = {
 
         _init: function() {
+            this._initControl();
             if (this.Update) {
-                this._initControl();
                 setInterval(this.checkDataChanged, 500);
             }
             else
@@ -68,7 +68,11 @@
             });
         },
 
-        // call back for subject
+        _watchDataChanged: function() {
+            addObserver(this.Event, this);
+        },
+
+        // call back
         checkDataChanged: function() {
             var flag = false;
 
@@ -93,12 +97,8 @@
             });
         },
 
-        _watchDataChanged: function() {
-            addObserver(this.Event, this);
-        },
-
         // call back
-        refreshAfterDataChanged: function(source) {
+        refreshControl: function(source) {
             this.Element.find('input').each(function() {
                 var name = $(this).attr('name');
                 if (source && source.hasOwnProperty(name)) {

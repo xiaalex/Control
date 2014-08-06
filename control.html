@@ -17,17 +17,15 @@
             var data = {lastname: "Doe", firstname: "John"};
 
             $("#source").Control({
-                DataSource: data,
-                Event: 'data.changed',
-                Update: 'true'
+                DataSource: data
             });
             $("#dest1").Control({
                 DataSource: data,
-                Event: 'data.changed'
+                Update: false
             });
             $("#dest2").Control({
                 DataSource: data,
-                Event: 'data.changed'
+                Update: false
             });
 		});
 	</script>
