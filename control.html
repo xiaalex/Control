@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Simple Data Control Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <script type="text/javascript" src="script/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="script/control.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+            // data source format {name: value1, address: value2}
+            var data = {lastname: "Doe", firstname: "John"};
+
+            $("#source").Control({
+                DataSource: data,
+                Event: 'data.changed',
+                Update: 'true'
+            });
+            $("#dest1").Control({
+                DataSource: data,
+                Event: 'data.changed'
+            });
+            $("#dest2").Control({
+                DataSource: data,
+                Event: 'data.changed'
+            });
+		});
+	</script>
+
+</head>
+<body>
+
+<h4>Data Source</h4>
+<div id="source">
+Last Name <input type="text" name="lastname">
+First name <input type="text" name="firstname">
+</div>
+
+<h4>Display 1</h4>
+<div id="dest1">
+Last Name <input type="text" name="lastname">
+First name <input type="text" name="firstname">
+</div>
+
+<h4>Display 2</h4>
+<div id="dest2">
+Last Name <input type="text" name="lastname">
+</div>
+
+</body>
+</html>
+
